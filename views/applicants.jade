@@ -6,3 +6,5 @@ block content
 		ul#applications.list-unstyled
 		for applicant in applicants
 			li #{applicant.name}
+			a(href="/applicants/#{applicant._id}/delete")
+				button.delete-button(data-id= applicant._id) delete

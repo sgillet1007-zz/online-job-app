@@ -16,13 +16,22 @@ app.get('/', function(req, res) {
 // displays a list of applicants
 app.get('/applicants', function(req, res){
 	Applicant.find({}, function(err, data){
-		// console.log('data :', data);
 		res.render('applicants', {applicants : data});
 	});
 });
 
 app.get('/success', function(req, res){
 	res.render('success');
+});
+
+app.get('/applicants/:id/delete', function(req, res){
+	console.log('Delete route!!', req.params.id)
+	Applicant.remove({_id : req.params.id}, function(err, data){
+
+		console.log('Error : ', err);
+		res.redirect('/applicants');
+
+	});
 });
 
 // creates and applicant
